@@ -66,8 +66,11 @@ class SiteController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $model->updateViews();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

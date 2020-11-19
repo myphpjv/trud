@@ -18,6 +18,7 @@ use yii\helpers\Url;
  * @property string $description
  * @property int $category_id
  * @property int $region_id
+ * @property int $views
  * @property int|null $created_at
  * @property int|null $updated_at
  */
@@ -58,6 +59,7 @@ class Vacancy extends \yii\db\ActiveRecord
             'description' => 'Описание',
             'category_id' => 'Категория',
             'region_id' => 'Регион',
+            'views' => 'Просмотры',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -146,6 +148,12 @@ class Vacancy extends \yii\db\ActiveRecord
     public function getUrl()
     {
         return Url::to(['/site/view', 'id' => $this->id]);
+    }
+
+    public function updateViews()
+    {
+        $this->views++;
+        $this->update(false);
     }
 
 }
